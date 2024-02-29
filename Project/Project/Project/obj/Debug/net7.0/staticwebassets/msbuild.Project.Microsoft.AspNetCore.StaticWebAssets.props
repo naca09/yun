@@ -304,6 +304,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\70241f75-7737-4aa6-9ce3-7d248e694c02_undraw_posting_photo.svg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\740d0b62-a59e-4bc7-9913-3077832967b4_vn-11134207-7r98o-lmfuivwzjqvz5e.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>Project</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Project</BasePath>
+      <RelativePath>img/740d0b62-a59e-4bc7-9913-3077832967b4_vn-11134207-7r98o-lmfuivwzjqvz5e.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\740d0b62-a59e-4bc7-9913-3077832967b4_vn-11134207-7r98o-lmfuivwzjqvz5e.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\img\829a16b5-2825-4325-886b-301cbb994e2e_undraw_profile_2.svg))">
       <SourceType>Package</SourceType>
       <SourceId>Project</SourceId>

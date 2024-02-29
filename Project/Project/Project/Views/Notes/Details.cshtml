@@ -176,10 +176,7 @@
 
         </tbody>
     </table>
-    <div>
-        <h4>Total of Note:</h4>
-        <p id="totalOfNote">$@(Model.NoteProducts.Sum(p => p.StockOut * p.Product.Price))</p>
-    </div>
+
 </div>
 
 <br />
@@ -193,6 +190,6 @@
 </div>
 
 
-<p>
+<p id="backToList">
     @Html.ActionLink("Back to List", "Index")
 </p>

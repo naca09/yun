@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DFohh6nvXHfkDE4G/kwtLxIm/VpfZ9jmKw7JyrmARjA=",
+  "Hash": "HouoOUlVEOw3RXWDelQsRl1XitTmlwPlr613H8N1sEo=",
   "Source": "Project",
   "BasePath": "_content/Project",
   "Mode": "Default",
@@ -1554,6 +1554,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\70241f75-7737-4aa6-9ce3-7d248e694c02_undraw_posting_photo.svg"
+    },
+    {
+      "Identity": "C:\\Users\\ASUS\\Desktop\\yun\\Project\\Project\\Project\\wwwroot\\img\\740d0b62-a59e-4bc7-9913-3077832967b4_vn-11134207-7r98o-lmfuivwzjqvz5e.jpg",
+      "SourceId": "Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ASUS\\Desktop\\yun\\Project\\Project\\Project\\wwwroot\\",
+      "BasePath": "_content/Project",
+      "RelativePath": "img/740d0b62-a59e-4bc7-9913-3077832967b4_vn-11134207-7r98o-lmfuivwzjqvz5e.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\740d0b62-a59e-4bc7-9913-3077832967b4_vn-11134207-7r98o-lmfuivwzjqvz5e.jpg"
     },
     {
       "Identity": "C:\\Users\\ASUS\\Desktop\\yun\\Project\\Project\\Project\\wwwroot\\img\\829a16b5-2825-4325-886b-301cbb994e2e_undraw_profile_2.svg",
