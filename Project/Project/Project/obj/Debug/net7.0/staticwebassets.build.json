@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HouoOUlVEOw3RXWDelQsRl1XitTmlwPlr613H8N1sEo=",
+  "Hash": "PV+Wyhl8P3H/2Ae5yVHAkcI1iI2+E04D1axX77tS/go=",
   "Source": "Project",
   "BasePath": "_content/Project",
   "Mode": "Default",
@@ -1309,6 +1309,25 @@
       "OriginalItemSpec": "wwwroot\\img\\1109cb24-d804-4822-9a07-02055aad6c4e_undraw_rocket.svg"
     },
     {
+      "Identity": "C:\\Users\\ASUS\\Desktop\\yun\\Project\\Project\\Project\\wwwroot\\img\\118fff34-843f-4d56-800a-005facfa117e_mo-hinh-gundam-hg-1-144-gundam-calibarn-the-witch-from-mercury---bandai---gdhg0050-2.jpg",
+      "SourceId": "Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ASUS\\Desktop\\yun\\Project\\Project\\Project\\wwwroot\\",
+      "BasePath": "_content/Project",
+      "RelativePath": "img/118fff34-843f-4d56-800a-005facfa117e_mo-hinh-gundam-hg-1-144-gundam-calibarn-the-witch-from-mercury---bandai---gdhg0050-2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\118fff34-843f-4d56-800a-005facfa117e_mo-hinh-gundam-hg-1-144-gundam-calibarn-the-witch-from-mercury---bandai---gdhg0050-2.jpg"
+    },
+    {
       "Identity": "C:\\Users\\ASUS\\Desktop\\yun\\Project\\Project\\Project\\wwwroot\\img\\2.png",
       "SourceId": "Project",
       "SourceType": "Discovered",
@@ -1326,6 +1345,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\2.png"
+    },
+    {
+      "Identity": "C:\\Users\\ASUS\\Desktop\\yun\\Project\\Project\\Project\\wwwroot\\img\\2b95e526-236f-4450-9d12-a441a4689db6_Mô-Hình-Gundam-Bandai-MG-Sengoku-Astray-GDC-3.jpg",
+      "SourceId": "Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ASUS\\Desktop\\yun\\Project\\Project\\Project\\wwwroot\\",
+      "BasePath": "_content/Project",
+      "RelativePath": "img/2b95e526-236f-4450-9d12-a441a4689db6_Mô-Hình-Gundam-Bandai-MG-Sengoku-Astray-GDC-3.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\2b95e526-236f-4450-9d12-a441a4689db6_Mô-Hình-Gundam-Bandai-MG-Sengoku-Astray-GDC-3.jpg"
     },
     {
       "Identity": "C:\\Users\\ASUS\\Desktop\\yun\\Project\\Project\\Project\\wwwroot\\img\\2d1a4607-80b6-4c55-a1da-fa313cc6f04d_3919c9a2-0397-4fab-b099-a1374d6d96b9_undraw_profile_3.svg",
