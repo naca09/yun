@@ -1,28 +1,17 @@
-<<<<<<< HEAD
-﻿using Microsoft.AspNetCore.Identity;
-=======
 using Microsoft.AspNetCore.Identity;
->>>>>>> 54cb0aae9dd6a8d518a1393bef86017647c6672b
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-<<<<<<< HEAD
 using Project.Data;
 using Project.Models;
-using Project.Data;
-using Project.Models;
-=======
-using Rolepp.Data;
-using Rolepp.Models;
->>>>>>> 54cb0aae9dd6a8d518a1393bef86017647c6672b
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Rolepp.Controllers
+namespace Project.Controllers
 {
     public class NotesController : Controller
     {
@@ -118,15 +107,9 @@ namespace Rolepp.Controllers
             }
             if (ModelState.IsValid)
             {
-<<<<<<< HEAD
 
 
 
-=======
- 
-
-
->>>>>>> 54cb0aae9dd6a8d518a1393bef86017647c6672b
                 // Map NoteViewModel to Note entity
                 var note = new Note
                 {
@@ -173,7 +156,6 @@ namespace Rolepp.Controllers
 
             return View(model);
         }
-
 
         // GET: Notes/Edit/5
         public async Task<IActionResult> Edit(int? id)

@@ -21,11 +21,10 @@
             <span asp-validation-for="NoteCode" class="text-danger"></span>
             <div class="underline"></div>
         </div>
-        <div class="form-group input-data">
-            <input asp-for="CreateName" class="form-control" id="CreateName" required placeholder="Create Name" />
-            <span asp-validation-for="CreateName" class="text-danger"></span>
-            <div class="underline"></div>
-
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class="form-control" readonly />
+            <span asp-validation-for="UserName" class="text-danger"></span>
         </div>
         <div class="form-group input-data">
             <input asp-for="Customer" class="form-control" id="Customer" required placeholder="Customer" />
