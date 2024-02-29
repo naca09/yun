@@ -345,5 +345,22 @@ namespace Project.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        public async Task<IActionResult> UpdateMultiple(int[] productIds, bool inStock)
+        {
+            var products = await _context.Products.Where(p => productIds.Contains(p.ProductID)).ToListAsync();
+            if (products == null)
+            {
+                return NotFound();
+            }
+            foreach (var product in products)
+            {
+                product.InStock = inStock;
+                _context.Products.Update(product);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

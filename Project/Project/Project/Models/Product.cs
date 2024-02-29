@@ -8,6 +8,10 @@ namespace Project.Models
 {
     public class Product
     {
+        public Product()
+        {
+            InStock = true;
+        }
         [Key]
         public int ProductID { get; set; }
 

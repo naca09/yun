@@ -1,4 +1,7 @@
 ﻿@model PaginatedList<Product>
+@{
+    var isOutOfStockPage = Context.Request.Query["outOfStock"] == "true";
+}
 <style>
     img {
         width: 100px;
@@ -39,6 +42,11 @@
             <i class="fas fa-download fa-sm text-white-50"></i> Download Products
         </a>
         <a asp-action="Create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Create New</a>
+
+            <p>
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+
     </div>
 </div>
 <table class="table">
@@ -56,12 +64,16 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
-                </td>
+            <form asp-action="UpdateMultiple" method="post">
+                <input type="hidden" name="inStock" value="@(isOutOfStockPage ? "true" : "false")" />
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductName)
+                        <input type="checkbox" name="productIds" value="@item.ProductID" />
+                        <br />
+                    </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price) $
                 </td>
@@ -83,11 +95,12 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ProductID" style="background-color: #0099FF;" class="link-edit">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.ProductID" style="background-color: #0033CC;" class="link-details">Details</a> |
-                        <a asp-action="Ready" asp-route-id="@item.ProductID" style="background-color: #FF3399;" class="link-inStock">In Stock</a> |
-                        <a asp-action="OutStock" asp-route-id="@item.ProductID" style="background-color: #CC3300;" class="link-outStock"> Out Stock</a>
+
                 </td>
             </tr>
         }
+            <input type="submit" value="@(isOutOfStockPage ? "Set Products Available" : "Set Products Not Available")" />
+            </form>
     </tbody>
 </table>
     <div class="pagination">
