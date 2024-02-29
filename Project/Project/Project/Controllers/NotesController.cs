@@ -1,13 +1,22 @@
+<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Identity;
+=======
+using Microsoft.AspNetCore.Identity;
+>>>>>>> 54cb0aae9dd6a8d518a1393bef86017647c6672b
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+<<<<<<< HEAD
 using Project.Data;
 using Project.Models;
 using Project.Data;
 using Project.Models;
+=======
+using Rolepp.Data;
+using Rolepp.Models;
+>>>>>>> 54cb0aae9dd6a8d518a1393bef86017647c6672b
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -109,9 +118,15 @@ namespace Rolepp.Controllers
             }
             if (ModelState.IsValid)
             {
+<<<<<<< HEAD
 
 
 
+=======
+ 
+
+
+>>>>>>> 54cb0aae9dd6a8d518a1393bef86017647c6672b
                 // Map NoteViewModel to Note entity
                 var note = new Note
                 {

@@ -30,6 +30,23 @@
             }, "value", "text"), "Select Sort Order", new { @onchange = "this.form.submit();" })
         </div>
     </div>
+<form asp-action="Index" method="get" id="searchForm">
+    <p>
+        <label for="fromDate">Từ ngày:</label>
+        <input type="date" id="fromDate" name="fromDate" />
+
+        <label for="toDate">Đến ngày:</label>
+        <input type="date" id="toDate" name="toDate" />
+
+        <input type="submit" value="Search" />
+    </p>
+</form>
+
+<form asp-action="DownloadSearchResults" method="get" id="downloadForm">
+    <input type="hidden" name="fromDate" value="@ViewBag.FromDate" />
+    <input type="hidden" name="toDate" value="@ViewBag.ToDate" />
+    <input type="submit" value="Download Search Results" id="downloadButton" disabled />
+</form>
 
 
    
@@ -39,6 +56,8 @@
                 <th>Note Code</th>
                 <th>Stautus</th>
                 <th>Action</th>
+                <th>Print</th>
+
             </tr>
         </thead>
         <tbody>
@@ -78,6 +97,12 @@
                     <td>
                         <a asp-action="Details" asp-route-id="@item.NoteId" style="background-color: #0033CC;" class="link-details">See Details</a>
                     </td>
+                    <td>
+    <a asp-action="DownloadNoteDetails" asp-route-id="@item.NoteId">Download</a> <!-- Nút tải xuống -->
+</td>
+<td>
+    <a href="#" class="print-button" data-id="@item.NoteId">Print</a>
+</td>
                 </tr>
             }
         </tbody>
@@ -106,8 +131,27 @@
     </div>
 </div>
 
+@section Scripts {
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
+
+        function printNote(noteId) {
+            var win = window.open('/Notes/Details/' + noteId, '_blank');
+            win.onload = function () {
+                win.print();
+            }
+        }
+
+        $(document).ready(function () {
+            $('.print-button').click(function (e) {
+                e.preventDefault();
+                var noteId = $(this).data('id');
+                printNote(noteId);
+            });
+        });
+
+
+
     function updateStatus(noteId, newStatus) {
         $.ajax({
             url: '/Notes/UpdateStatusAjax/' + noteId + '?newStatus=' + newStatus,
@@ -146,4 +190,17 @@
     });
 
 
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Get the current URL
+        var url = new URL(window.location.href);
+
+        // Check if the URL contains the 'fromDate' and 'toDate' parameters
+        if (url.searchParams.has('fromDate') && url.searchParams.has('toDate')) {
+            // Enable the download button
+            document.getElementById('downloadButton').disabled = false;
+        }
+    });
+
 </script>
+}
+
