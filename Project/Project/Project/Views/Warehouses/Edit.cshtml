@@ -1,0 +1,76 @@
+﻿@model Project.Models.Warehouse
+
+@* <h2>Edit</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="WarehouseId" />
+
+    <div class="form-group">
+        <label asp-for="WarehouseName" class="control-label"></label>
+        <input asp-for="WarehouseName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Address" class="control-label"></label>
+        <input asp-for="Address" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ZipCode" class="control-label"></label>
+        <input asp-for="ZipCode" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber" class="control-label"></label>
+        <input asp-for="PhoneNumber" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+ *@
+
+<link href="@Url.Content("~/css/Product.css")" rel="stylesheet">
+
+<div class="container">
+    <div class="text">
+        Edit
+    </div>
+
+    <form asp-controller="Warehouses" asp-action="Edit" method="post" class="custom-form">
+        <input type="hidden" asp-for="WarehouseId" />
+        <div class="input-data">
+            <input asp-for="WarehouseName" class="form-control" />
+            <div class="underline"></div>
+            <span asp-validation-for="WarehouseName" class="text-danger"></span>
+        </div>
+        <div class="input-data">
+            <input asp-for="Address" class="form-control" />
+            <div class="underline"></div>
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <div class="input-data">
+            <input asp-for="ZipCode" class="form-control" />
+            <div class="underline"></div>
+            <span asp-validation-for="ZipCode" class="text-danger"></span>
+        </div>
+        <div class="input-data">
+            <input asp-for="PhoneNumber" class="form-control" />
+            <div class="underline"></div>
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="submit-btn">
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="submit" value="Edit" class="btn btn-primary">
+                </div>
+            </div>
+            <div class="back-btn">
+                <div class="submit-btn">
+                    <div class="input-data">
+                        <div class="inner"></div>
+                        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

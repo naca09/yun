@@ -1,0 +1,173 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+/* Reset CSS */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+/* Global styles */
+body {
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+    .container .text {
+        font-size: 41px;
+        font-weight: 600;
+        text-align: center;
+        background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+    }
+
+    .container form {
+        width: 100%;
+        max-width: 600px;
+        padding: 25px 40px;
+        background: #fff;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    .container .input-data {
+        width: 100%;
+        margin-bottom: 32px;
+        position: relative;
+    }
+
+.input-data input,
+.input-data select {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-bottom: 2px solid rgba(0,0,0,0.12);
+    font-size: 17px;
+}
+
+.input-data label {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.input-data .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+}
+
+    .input-data .underline:before {
+        position: absolute;
+        content: "";
+/*        height: 2px;
+*/        width: 100%;
+        background: #3498db;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+.input-data input:focus ~ .underline:before,
+.input-data select:focus ~ .underline:before,
+.input-data input:valid ~ .underline:before,
+.input-data select:valid ~ .underline:before {
+    transform: scaleX(1);
+}
+
+.submit-btn .input-data {
+    overflow: hidden;
+    height: 45px;
+    width: 25%;
+    position: relative;
+}
+
+    .submit-btn .input-data .inner {
+        height: 100%;
+        width: 300%;
+        position: absolute;
+        left: -100%;
+        background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+        transition: all 0.4s;
+    }
+
+    .submit-btn .input-data:hover .inner {
+        left: 0;
+    }
+
+    .submit-btn .input-data input {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 17px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+    }
+    .form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.submit-btn,
+.back-btn {
+    flex: 1;
+    margin-right: 10px; /* Điều chỉnh khoảng cách giữa các phần tử */
+}
+
+.submit-btn .input-data,
+.back-btn .input-data {
+    width: 100%;
+    position: relative;
+}
+
+.submit-btn .input-data .inner,
+.back-btn .input-data .inner {
+    height: 100%;
+    width: 300%;
+    position: absolute;
+    left: -100%;
+    background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+    transition: all 0.4s;
+}
+
+.submit-btn .input-data:hover .inner,
+.back-btn .input-data:hover .inner {
+    left: 0;
+}
+
+.submit-btn .input-data input,
+.back-btn .input-data a {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+}

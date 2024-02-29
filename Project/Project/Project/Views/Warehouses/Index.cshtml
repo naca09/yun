@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Project.Models.Warehouse>
+<link href="@Url.Content("~/css/Index.css")" rel="stylesheet">
+
+<div class="container">
+<div class="centered text">
+    <h2>Warehouses</h2>
+</div>
+
+<div>
+    <a asp-action="Create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Create New</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WarehouseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WarehouseName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.WarehouseId" style="background-color: #0099FF;" class="link-edit">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.WarehouseId" style="background-color: #0033CC;" class="link-details">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.WarehouseId" style="background-color: #CC3300;" class="link-delete">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,105 @@
+﻿.text { /*chỉnh màu chữ*/
+    font-size: 41px;
+    font-weight: 600;
+    text-align: center;
+    background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
+.container {
+    width: 100%;
+    max-width: 2000px;
+    padding: 100px 45px;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+.horizontal {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1200px; /* Khoảng cách 1200px giữa hai phần tử */
+}
+.link-edit:hover {
+    background-color: #3366FF; /* Màu đậm hơn khi hover */
+}
+
+.link-details:hover {
+    background-color: #0d193d; /* Màu đậm hơn khi hover */
+}
+
+.link-delete:hover {
+    background-color: #990000; /* Màu đậm hơn khi hover */
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+    .table th, .table td {
+        border: 2px solid #333;
+        text-align: center;
+        padding: 8px;
+    }
+
+    .table th {
+        background-color: #4e73df;
+        color: #ffffff;
+    }
+
+    /* CSS cho các liên kết hành động */
+    .table a {
+        color: #ffffff;
+        text-decoration: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+    }
+
+        .table a.edit-link {
+            background-color: #007bff;
+        }
+
+        .table a.delete-link {
+            background-color: #dc3545;
+        }
+
+        .table a:hover {
+            background-color: #0056b3;
+        }
+
+.centered {
+    text-align: center; /* Đưa nội dung vào giữa trang */
+}
+
+.horizontal {
+    display: flex; /* Sử dụng Flexbox */
+    justify-content: space-between; /* Canh các phần tử ngang nhau theo chiều ngang */
+    margin-bottom: 10px; /* Khoảng cách giữa các phần tử */
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+    .pagination a,
+    .pagination span {
+        padding: 8px 16px;
+        margin: 0 4px;
+        background-color: #f2f2f2;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        text-decoration: none;
+    }
+
+        .pagination a:hover {
+            background-color: #e2e2e2;
+        }
+
+        .pagination span.current {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }

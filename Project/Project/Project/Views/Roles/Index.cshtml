@@ -1,0 +1,58 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityRole>
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<style>
+    /* Tùy chỉnh CSS cho bảng */
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+
+    th {
+        background-color: #f8f9fa; /* Màu nền cho tiêu đề cột */
+    }
+
+    /* Tùy chỉnh CSS cho nút tạo mới */
+    .create-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        color: #fff;
+        background-color: #007bff;
+        border-radius: 5px;
+    }
+
+        .create-button:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<h1>Application Roles</h1>
+<p>
+    <a asp-action="Create" class="create-button">Create New Role</a>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.NormalizedName)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.NormalizedName)</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>

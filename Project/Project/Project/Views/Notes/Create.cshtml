@@ -1,0 +1,290 @@
+﻿@model Project.Models.NoteViewModel
+
+<link href="@Url.Content("~/css/Product.css")" rel="stylesheet">
+<style>
+    .container form {
+        width: 100%;
+        max-width: 3000px;
+        padding: 25px 10px;
+        background: #fff;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+</style>
+<div class="container">
+    <div class="text">
+        Create Note
+    </div>
+
+    <form asp-action="Create" method="post" class="custom-form">
+        <div class="form-group input-data">
+            <input asp-for="NoteCode" class="form-control" id="NoteCode" required placeholder="Note Code" />
+            <span asp-validation-for="NoteCode" class="text-danger"></span>
+            <div class="underline"></div>
+        </div>
+        <div class="form-group input-data">
+            <input asp-for="CreateName" class="form-control" id="CreateName" required placeholder="Create Name" />
+            <span asp-validation-for="CreateName" class="text-danger"></span>
+            <div class="underline"></div>
+
+        </div>
+        <div class="form-group input-data">
+            <input asp-for="Customer" class="form-control" id="Customer" required placeholder="Customer" />
+            <span asp-validation-for="Customer" class="text-danger"></span>
+            <div class="underline"></div>
+
+        </div>
+        <div class="form-group input-data">
+            <input asp-for="AddressCustomer" class="form-control" id="AddressCustomer" required placeholder="Address Customer" />
+            <span asp-validation-for="AddressCustomer" class="text-danger"></span>
+            <div class="underline"></div>
+
+        </div>
+        <div class="form-group input-data">
+            <input asp-for="Reason" class="form-control" id="Reason" required placeholder="Reason" />
+            <span asp-validation-for="Reason" class="text-danger"></span>
+            <div class="underline"></div>
+
+        </div>
+
+        <div id="productToExportForm">
+            <h3>Product To Export</h3>
+            <div id="dropdownsContainer">
+                <div class="form-group product-dropdown">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>Product:</label>
+                            <div id="productSearch" style="display: none;">
+                                <input type="text" id="productSearchInput" class="form-control" placeholder="Search product...">
+                                <div id="productSearchResults"></div>
+                            </div>
+                            <select id="productDropdown" asp-for="@Model.Products[0].ProductID" asp-items="@(new SelectList(ViewBag.Products, "ProductID", "ProductName"))" class="form-control">
+                                <option value="">Select a product</option>
+                            </select>
+
+                            <span id="productValidation" asp-validation-for="@Model.Products[0].ProductID" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <!-- Cột thứ nhất -->
+                            <div class="col-md-6">
+                                <div class="col-md-4">
+                                    <button type="button" id="showProductSearch" class="btn btn-primary">Search Product</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>StockOut:</label>
+                                    <input asp-for="@Model.Products[0].StockOut" type="number" min="1" class="form-control" />
+                                    <span asp-validation-for="@Model.Products[0].StockOut" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="ProductCode">Product Code:</label>
+                                    <input type="text" id="ProductCode" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <!-- Kết thúc cột thứ nhất -->
+                            <!-- Cột thứ hai -->
+                            <div class="col-md-6">
+                                <div class="col-md-4">
+                                    <label for="Price">Price:</label>
+                                    <input type="text" id="Price" class="form-control" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="Quantity">Quantity:</label>
+                                    <input type="text" id="Quantity" class="form-control" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="Category">Category:</label>
+                                    <input type="text" id="Category" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <!-- Kết thúc cột thứ hai -->
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-danger btn-remove">Remove</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <button type="button" id="addDropdown" class="btn btn-primary">Add Another Product</button>
+        </div>
+        <div class="form-group">
+            <label>Total of Note: </label>
+            <input type="number" id="TotalOfProduct" class="form-control" readonly />
+        </div>
+
+        <div class="form-row">
+            <div class="submit-btn">
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="submit" value="Create" class="btn btn-primary">
+                </div>
+            </div>
+            <div class="back-btn">
+                <div class="submit-btn">
+                    <div class="input-data">
+                        <div class="inner"></div>
+                        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var counter = 0;
+
+            /*/ Xử lý sự kiện khi thay đổi sản phẩm trong dropdown
+            $("#dropdownsContainer").on("change", "#productDropdown", function () {
+                var productId = $(this).val(); // Lấy giá trị của sản phẩm đã chọn
+                var dropdownContainer = $(this).closest(".product-dropdown"); // Tìm phần tử cha gần nhất có lớp 'product-dropdown'
+
+                if (productId) { // Nếu có sản phẩm được chọn
+                    // Gửi yêu cầu AJAX đến máy chủ để lấy thông tin sản phẩm
+                    $.ajax({
+                        url: '/Products/GetProductDetails', // Đường dẫn đến action xử lý lấy thông tin sản phẩm
+                        type: 'GET',
+                        data: { 'id': productId }, // Dữ liệu gửi đi, trong trường hợp này là ID của sản phẩm
+                        success: function (data) { // Hàm được gọi khi yêu cầu AJAX thành công
+                            // Cập nhật các trường thông tin của sản phẩm
+                            dropdownContainer.find("#ProductCode").val(data.productCode);
+                            dropdownContainer.find("#Quantity").val(data.quantity);
+                            dropdownContainer.find("#Price").val(data.price);
+
+                            // Tính toán và cập nhật TotalOfNote
+                            var totalOfNote = 0;
+                            $(".product-dropdown").each(function () {
+                                var stockOut = parseFloat($(this).find("input[name$='.StockOut']").val()) || 0; // Lấy giá trị StockOut từ input
+                                var price = parseFloat($(this).find("#Price").val()) || 0; // Lấy giá trị Price từ input
+                                var total = stockOut * price; // Tính toán Total
+                                totalOfNote += total;
+                            });
+                            $("#TotalOfProduct").val(totalOfNote);
+                        },
+                        error: function () { // Hàm được gọi khi có lỗi xảy ra trong quá trình gửi yêu cầu AJAX
+                            console.log("Error occurred while fetching product details.");
+                        }
+                    });
+                }
+            });*/
+            // Xử lý sự kiện khi thay đổi sản phẩm trong dropdown
+            $("#dropdownsContainer").on("change", "#productDropdown", function () {
+                var productId = $(this).val(); // Lấy giá trị của sản phẩm đã chọn
+                var dropdownContainer = $(this).closest(".product-dropdown"); // Tìm phần tử cha gần nhất có lớp 'product-dropdown'
+
+                if (productId) { // Nếu có sản phẩm được chọn
+                    // Gửi yêu cầu AJAX đến máy chủ để lấy thông tin sản phẩm
+                    $.ajax({
+                        url: '/Products/GetProductDetails', // Đường dẫn đến action xử lý lấy thông tin sản phẩm
+                        type: 'GET',
+                        data: { 'id': productId }, // Dữ liệu gửi đi, trong trường hợp này là ID của sản phẩm
+                        success: function (data) { // Hàm được gọi khi yêu cầu AJAX thành công
+                            // Cập nhật các trường thông tin của sản phẩm
+                            dropdownContainer.find("#ProductCode").val(data.productCode);
+                            dropdownContainer.find("#Quantity").val(data.quantity);
+                            dropdownContainer.find("#Price").val(data.price);
+                            dropdownContainer.find("#Category").val(data.category);
+
+                            // Tính toán và cập nhật TotalOfNote
+                            var totalOfNote = 0;
+                            $(".product-dropdown").each(function () {
+                                var stockOut = parseFloat($(this).find("input[name$='.StockOut']").val()) || 0; // Lấy giá trị StockOut từ input
+                                var price = parseFloat($(this).find("#Price").val()) || 0; // Lấy giá trị Price từ input
+                                var total = stockOut * price; // Tính toán Total
+                                totalOfNote += total;
+                            });
+                            $("#TotalOfProduct").val(totalOfNote);
+                        },
+                        error: function () { // Hàm được gọi khi có lỗi xảy ra trong quá trình gửi yêu cầu AJAX
+                            console.log("Error occurred while fetching product details.");
+                        }
+                    });
+                }
+            });
+
+            // Xử lý sự kiện khi click vào nút "Search Product"
+            $('#dropdownsContainer').on('click', '#showProductSearch', function () {
+                $(this).closest(".product-dropdown").find("#productSearch").toggle();
+
+                // Hiển thị tất cả các sản phẩm khi click vào ô tìm kiếm
+                if ($(this).closest(".product-dropdown").find("#productSearch").is(":visible")) {
+                    var searchResults = $(this).closest(".product-dropdown").find('#productSearchResults');
+                    if (searchResults.is(':empty')) {
+                        $(this).closest(".product-dropdown").find('#productDropdown option').clone().appendTo(searchResults);
+                    }
+                }
+            });
+
+            // Các sự kiện khác giữ nguyên
+
+
+            // Xử lý sự kiện khi nhập vào ô tìm kiếm
+            $('#dropdownsContainer').on('input', '#productSearchInput', function () {
+                var searchKeyword = $(this).val().toLowerCase();
+                $(this).closest(".product-dropdown").find('#productSearchResults').empty();
+                $(this).closest(".product-dropdown").find('#productDropdown option').each(function () {
+                    var productName = $(this).text().toLowerCase();
+                    if (productName.includes(searchKeyword)) {
+                        $(this).closest(".product-dropdown").find('#productSearchResults').append($(this).clone());
+                    }
+                });
+            });
+
+            // Xử lý sự kiện khi click vào một kết quả từ ô tìm kiếm
+            $('#dropdownsContainer').on('click', '#productSearchResults option', function () {
+                var productId = $(this).val();
+                var productName = $(this).text();
+                $(this).closest(".product-dropdown").find('#productDropdown').val(productId).trigger('change'); // Trigger change event to fetch product details
+                $(this).closest(".product-dropdown").find('#productSearchInput').val(productName);
+                $(this).closest(".product-dropdown").find('#productSearch').hide();
+            });
+
+            // Xử lý sự kiện khi nhập vào các trường input
+            $("#dropdownsContainer").on("input", ".form-control", function () {
+                var dropdownContainer = $(this).closest(".product-dropdown");
+                var stockOut = parseFloat(dropdownContainer.find("input[name$='.StockOut']").val()) || 0; // Lấy giá trị StockOut từ input
+                var price = parseFloat(dropdownContainer.find("#Price").val()) || 0; // Lấy giá trị Price từ input
+                var total = stockOut * price; // Tính toán Total
+
+                // Cập nhật giá trị Total vào input
+                dropdownContainer.find("#Total").val(total);
+
+                // Tính toán và cập nhật TotalOfNote
+                var totalOfNote = 0;
+                $(".product-dropdown").each(function () {
+                    var productTotal = parseFloat($(this).find("#Total").val()) || 0;
+                    totalOfNote += productTotal;
+                });
+                $("#TotalOfProduct").val(totalOfNote);
+            });
+
+            // Xử lý sự kiện khi click vào nút "Remove"
+            $("#dropdownsContainer").on("click", ".btn-remove", function () {
+                if ($(this).closest(".product-dropdown").index() === 0) {
+                    alert("The first item cannot be removed.");
+                } else {
+                    $(this).closest(".product-dropdown").remove();
+                }
+            });
+
+            $("#addDropdown").click(function () {
+                var clonedDropdown = $(".product-dropdown:first").clone(); // Clone the first form
+                var newIndex = $(".product-dropdown").length; // Get the new index
+
+                // Update the 'name' attributes of the input elements in the cloned dropdown
+                clonedDropdown.find("input, select").each(function () {
+                    var name = $(this).attr("name");
+                    if (name) {
+                        name = name.replace(/\[0\]/, "[" + newIndex + "]"); // Replace the old index with the new index
+                        $(this).attr("name", name);
+                    }
+                });
+
+                // Append the cloned form to the container
+                $("#dropdownsContainer").append(clonedDropdown);
+            });
+
+        });
+    </script>
+}

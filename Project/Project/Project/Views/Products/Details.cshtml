@@ -1,0 +1,101 @@
+﻿@model Project.Models.Product
+<link href="@Url.Content("~/css/Details.css")" rel="stylesheet">
+
+ 
+<div class="text">
+    Product Details
+</div>
+<div class="container">
+
+    <h4 class="text">ProductID: @Model.ProductID</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Product Name:</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ProductName)</dd>
+        <dt class="col-sm-2">Price:</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Price)</dd>
+        <dt class="col-sm-2">Quantity:</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.Quantity)</dd>
+        <dt class="col-sm-2">Product Code:</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(model => model.ProductCode)</dd>
+        <dt class="col-sm-2">Product Image:</dt>
+        <dd class="col-sm-10">
+            <img src="@Url.Content("~/img/" + Model.ProductImg)" alt="Product Image" />
+        </dd>
+        <dt class="col-sm-2">Warehouse:</dt>
+        <dd class="col-sm-10">
+            @if (Model.Warehouse != null)
+            {
+                @Html.DisplayFor(model => model.Warehouse.WarehouseName)
+            }
+            else
+            {
+                <span class="no-warehouse">No warehouse assigned</span>
+            }
+        </dd>
+        <dt class="col-sm-2">Address:</dt>
+        <dd class="col-sm-10">
+            @if (Model.Warehouse != null)
+            {
+                @Html.DisplayFor(model => model.Warehouse.Address)
+            }
+            else
+            {
+                <span class="no-warehouse">No warehouse assigned</span>
+            }
+        </dd>
+        <dt class="col-sm-2">Category:</dt>
+        <dd class="col-sm-10">
+            @if (Model.Category != null)
+            {
+                @Html.DisplayFor(model => model.Category.Name)
+            }
+            else
+            {
+                <span class="no-category">No category assigned</span>
+            }
+        </dd>
+        <dt class="col-sm-2">Category Image:</dt>
+        <dd>
+            <img src="@Url.Content("~/img/" + Model.Category.categoryImg)" alt="Category Image" />
+        </dd>
+        
+    </dl>
+    <div class="back-btn">
+        <div class="submit-btn">
+            <div class="input-data">
+                <div class="inner"></div>
+                <a asp-action="Index" class="btn btn-primary">Back to List</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+    .text {
+        font-size: 41px;
+        font-weight: 600;
+        text-align: center;
+        background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+    }
+
+        /* Style cho nhãn của dòng */
+        .row dt {
+            width: 50%;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        /* Style cho nội dung của dòng */
+1   .row dd {
+            width: 50%;
+        }
+
+    img {
+        width: 150px;
+        height: 150px;
+    }
+</style>

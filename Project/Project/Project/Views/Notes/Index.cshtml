@@ -1,0 +1,149 @@
+﻿@model PaginatedList<Note>
+<link href="@Url.Content("~/css/Index.css")" rel="stylesheet">
+
+<div class="container" id="notes-delivery-container">
+
+    <div class="centered text">
+        <h2>Notes Delivery Goods</h2>
+    </div>
+    <div class="d-sm-flex align-items-center mb-4 horizontal justify-content-between">
+        <form asp-action="Index" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+                <input type="text" class="form-control bg-light border-0 small" name="searchString" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div>
+            @if (User.IsInRole("Admin"))
+            {
+                <p>
+                    <a asp-action="Create" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Create New Note</a>
+                </p>
+            }
+            @Html.DropDownList("SortOrder", new SelectList(new List<Object>{
+            new { value = "newest" , text = "Newest"  },
+            new { value = "oldest" , text = "Oldest" }
+            }, "value", "text"), "Select Sort Order", new { @onchange = "this.form.submit();" })
+        </div>
+    </div>
+
+
+   
+    <table class="table" id="notes-table">
+        <thead>
+            <tr>
+                <th>Note Code</th>
+                <th>Stautus</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoteCode)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("Accountant") && item.Status == 1)
+                        {
+                            <button onclick="updateStatus(@item.NoteId, 2)" style="color:green">Approved</button>
+                        }
+                        else if (User.IsInRole("CFO") && item.Status == 2)
+                        {
+                            <button onclick="updateStatus(@item.NoteId, 3)" style="color:green">Approve</button>
+                            <button onclick="updateStatus(@item.NoteId, 4)" style="color:red">Disapprove</button>
+                        }
+                        else if (item.Status == 3)
+                        {
+                            <span style="color: green">Approved</span>
+                        }
+                        else if (item.Status == 4)
+                        {
+                            <span style="color: red">Disapproved</span>
+                            @* @if (User.IsInRole("CFO"))
+                    {
+                    <button onclick="deleteNote(@item.NoteId)">Delete</button>
+                    } *@
+                        }
+                        else
+                        {
+                            <span style="color:orange">Waiting.....</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.NoteId" style="background-color: #0033CC;" class="link-details">See Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="pagination" id="notes-pagination">
+        @if (Model.HasPreviousPage)
+        {
+            <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex - 1)">Previous</a>
+        }
+        else
+        {
+            <span>Previous</span>
+        }
+
+        <span> @Model.PageIndex </span>
+
+        @if (Model.HasNextPage)
+        {
+            <a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex + 1)">Next</a>
+        }
+        else
+        {
+            <span> Next</span>
+        }
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    function updateStatus(noteId, newStatus) {
+        $.ajax({
+            url: '/Notes/UpdateStatusAjax/' + noteId + '?newStatus=' + newStatus,
+            type: 'POST',
+            success: function (data) {
+                console.log('Status updated successfully');
+                location.reload();
+            },
+            error: function () {
+                console.log('Error updating status');
+            }
+        });
+    }
+
+    function deleteNote(noteId) {
+        $.ajax({
+            url: '/Notes/Delete/' + noteId,
+            type: 'POST',
+            success: function (data) {
+                console.log('Note deleted successfully');
+                location.reload();
+            },
+            error: function () {
+                console.log('Error deleting note');
+            }
+        });
+    }
+
+    function handleSortOrderChange() {
+        var selectedSortOrder = $("#SortOrder").children("option:selected").val();
+        window.location.href = '/Notes/Index?sortOrder=' + selectedSortOrder;
+    }
+
+    $(document).ready(function () {
+        $("#SortOrder").change(handleSortOrderChange);
+    });
+
+
+</script>

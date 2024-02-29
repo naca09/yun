@@ -1,0 +1,18 @@
+﻿@model Project.Models.Category
+
+<h2>Details</h2>
+<style>
+    img {
+        width: 150px;
+        height: 150px;
+    }
+</style>
+<div class="container">
+    <h4>Category ID: @Model.categoryId</h4>
+    <h4>Name: @Model.Name</h4>
+    <img src="@Url.Content("~/img/" + Model.categoryImg)" alt="Category Image" />
+</div>
+
+<p>
+    <a asp-action="Index">Back to List</a>
+</p>

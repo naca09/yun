@@ -1,0 +1,198 @@
+﻿@model Project.Models.Note
+
+@{
+    ViewData["Title"] = "Details";
+}
+@using Humanizer
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@{
+    decimal total = Model.NoteProducts.Sum(p => p.StockOut * p.Product.Price);
+    string totalInWords = ((int)total).ToWords();
+}
+<style>
+    @@media print {
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        .print-button {
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #accordionSidebar {
+            display: none;
+        }
+
+        #backToList {
+            display: none;
+        }
+
+
+
+        #print-only-header .col-md-6 {
+            flex: 1;
+        }
+    }
+
+
+    @@media screen {
+        #print-only {
+            display: none;
+        }
+    }
+
+</style>
+
+<div id="print-only">
+    <div class="row" id="print-only-header">
+        <div class="col-md-6">
+            <div style="font-size:20px; font-weight:bold">Công ty TNHH Qui Nhơn</div>
+            <br />
+            <div style="font-size:20px; font-weight:bold">1230 Hùng Vương, Qui Nhơn City, Bình Định Province</div>
+        </div>
+        <div class="col-md-6">
+            <div style="font-size:20px; font-weight:bold; text-align:center; display:block">
+                Mẫu số: 02 - VT
+            </div>
+            <div style="font-size:20px; font-weight:bold; text-align:center; display:block">
+                (Ban hành theo thông tư số 200/2014/TT-BTC)
+            </div>
+            <div style="font-size:20px; font-weight:bold; text-align:center; display:block">
+                Ngày 22/12/2014 của Bộ Tài chính
+            </div>
+        </div>
+    </div>
+</div>
+<h2>Note Delivery Goods Details</h2>
+
+<div>
+    <h4>Note Information</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NoteCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NoteCode)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreateName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreateName)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Customer)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AddressCustomer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AddressCustomer)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reason)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reason)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <h4>Products</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Code</th>
+                <th>StockOut</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="productsTableBody">
+            @foreach (var product in Model.NoteProducts)
+            {
+                <tr>
+                    <td>@product.Product.ProductName</td>
+                    <td>@product.Product.ProductCode</td>
+                    <td>@product.StockOut</td>
+                    <td>@product.Product.Price.ToString("C")</td>
+                    <td>$@(product.StockOut * product.Product.Price)</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="4">Total of Note (Number):</td>
+                <td id="totalOfNote">$@total</td>
+            </tr>
+            <tr>
+                <td colspan="4">Total of Note (Write by characters):</td>
+                <td>$@totalInWords</td>
+            </tr>
+
+        </tbody>
+    </table>
+    <div>
+        <h4>Total of Note:</h4>
+        <p id="totalOfNote">$@(Model.NoteProducts.Sum(p => p.StockOut * p.Product.Price))</p>
+    </div>
+</div>
+
+<br />
+<div id="print-only">
+    <div class="row">
+        <div class="col-sm-3">CFO's Signature</div>
+        <div class="col-sm-3">Accountant's Signature</div>
+        <div class="col-sm-3">Keeper's Signature</div>
+        <div class="col-sm-3">Customer's Signature</div>
+    </div>
+</div>
+
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
