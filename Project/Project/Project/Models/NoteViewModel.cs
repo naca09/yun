@@ -8,7 +8,7 @@ namespace Project.Models
         [Required]
         public string NoteCode { get; set; }
         [Required]
-        public string CreateName { get; set; }
+        public string UserName { get; set; }
         [Required]
         public string Customer { get; set; }
         [Required]
@@ -16,11 +16,6 @@ namespace Project.Models
         [Required]
         public string Reason { get; set; }
 
-        // Add Total property
-        [Required]
-        public decimal Total { get; set; }
-
-        public int CategoryId { get; set; } // Thêm trường CategoryId
 
         public List<NoteProductViewModel> Products { get; set; }
 
